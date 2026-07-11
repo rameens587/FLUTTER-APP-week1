@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import '../models/program.dart';
+import '../services/auth_repository.dart';
 
 /// Screen 4 — Program Details / Profile.
 /// Shows full program info, lets a learner register, and — once
@@ -38,7 +39,10 @@ class _ProgramDetailsScreenState extends State<ProgramDetailsScreen> {
           Container(
             height: 140,
             decoration: BoxDecoration(
-              color: Theme.of(context).colorScheme.primary.withOpacity(0.1),
+              color: Theme.of(context)
+                  .colorScheme
+                  .primary
+                  .withAlpha((0.1 * 255).round()),
               borderRadius: BorderRadius.circular(16),
             ),
             alignment: Alignment.center,
@@ -65,16 +69,18 @@ class _ProgramDetailsScreenState extends State<ProgramDetailsScreen> {
               style: Theme.of(context).textTheme.bodyMedium),
           const SizedBox(height: 24),
           ElevatedButton.icon(
-            icon: Icon(program.isRegistered
+            icon: Icon(AuthRepository.isProgramRegistered(program.id)
                 ? Icons.check_circle_outline
                 : Icons.how_to_reg_outlined),
-            label: Text(
-                program.isRegistered ? 'Registered' : 'Register for this program'),
-            onPressed: () {
-              setState(() => ProgramRepository.toggleRegistration(program.id));
+            label: Text(AuthRepository.isProgramRegistered(program.id)
+                ? 'Registered'
+                : 'Register for this program'),
+            onPressed: () async {
+              await ProgramRepository.toggleRegistration(program.id);
+              setState(() {});
             },
           ),
-          if (program.isRegistered) ...[
+          if (AuthRepository.isProgramRegistered(program.id)) ...[
             const SizedBox(height: 24),
             const Divider(),
             const SizedBox(height: 8),

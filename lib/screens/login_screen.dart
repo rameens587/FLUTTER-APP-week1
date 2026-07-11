@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../services/auth_repository.dart';
+
 /// Screen 1 — Login.
 /// Lets a learner or admin sign in. For Week 1 this simulates
 /// authentication locally; a real auth provider (Firebase Auth, etc.)
@@ -32,8 +34,18 @@ class _LoginScreenState extends State<LoginScreen> {
     await Future.delayed(const Duration(milliseconds: 600)); // mock network call
     setState(() => _isLoading = false);
 
-    if (!mounted) return;
-    Navigator.pushReplacementNamed(context, '/home');
+    final email = _emailController.text.trim();
+    final password = _passwordController.text;
+
+    final signedIn = await AuthRepository.signIn(email, password);
+    if (signedIn) {
+      if (!mounted) return;
+      Navigator.pushReplacementNamed(context, '/home');
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Invalid credentials. Please sign up or try again.')),
+      );
+    }
   }
 
   @override
@@ -79,7 +91,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       if (value == null || value.isEmpty) {
                         return 'Please enter your email';
                       }
-                      if (!value.contains('@')) {
+                      if (!AuthRepository.isValidEmail(value)) {
                         return 'Please enter a valid email';
                       }
                       return null;
@@ -134,7 +146,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     children: [
                       const Text("Don't have an account?"),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () => Navigator.pushReplacementNamed(context, '/signup'),
                         child: const Text('Sign Up'),
                       ),
                     ],

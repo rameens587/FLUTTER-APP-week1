@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/program.dart';
+import '../widgets/program_card.dart';
 
 /// Screen 2 — Home Dashboard.
 /// Shows announcements and a quick preview of upcoming programs, with
@@ -9,7 +10,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final upcoming = ProgramRepository.getAll().take(2).toList();
+    final upcoming = ProgramRepository.getAll().take(4).toList();
 
     return Scaffold(
       appBar: AppBar(
@@ -48,7 +49,15 @@ class HomeScreen extends StatelessWidget {
           ),
           const SizedBox(height: 8),
           for (final program in upcoming)
-            _programPreviewTile(context, program),
+            ProgramCard(
+              program: program,
+              showSeats: false,
+              onTap: () => Navigator.pushNamed(
+                context,
+                '/program-details',
+                arguments: program.id,
+              ),
+            ),
         ],
       ),
       bottomNavigationBar: NavigationBar(
@@ -56,6 +65,8 @@ class HomeScreen extends StatelessWidget {
         onDestinationSelected: (index) {
           if (index == 1) {
             Navigator.pushNamed(context, '/programs');
+          } else if (index == 2) {
+            Navigator.pushNamed(context, '/profile');
           }
         },
         destinations: const [
@@ -111,27 +122,6 @@ class HomeScreen extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-
-  Widget _programPreviewTile(BuildContext context, Program program) {
-    return Card(
-      margin: const EdgeInsets.only(bottom: 12),
-      child: ListTile(
-        leading: CircleAvatar(
-          backgroundColor:
-              Theme.of(context).colorScheme.primary.withOpacity(0.1),
-          child: const Icon(Icons.event_outlined, color: Color(0xFF2E5EAA)),
-        ),
-        title: Text(program.title),
-        subtitle: Text(program.category),
-        trailing: const Icon(Icons.chevron_right),
-        onTap: () => Navigator.pushNamed(
-          context,
-          '/program-details',
-          arguments: program.id,
-        ),
       ),
     );
   }

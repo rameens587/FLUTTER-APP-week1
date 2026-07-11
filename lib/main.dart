@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
+
 import 'screens/login_screen.dart';
+import 'screens/signup_screen.dart';
 import 'screens/home_screen.dart';
 import 'screens/program_listing_screen.dart';
 import 'screens/program_details_screen.dart';
+import 'screens/profile_screen.dart';
+import 'services/auth_repository.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await AuthRepository.initialize();
   runApp(const ExcelerateConnectApp());
 }
 
@@ -52,8 +58,10 @@ class ExcelerateConnectApp extends StatelessWidget {
       initialRoute: '/login',
       routes: {
         '/login': (context) => const LoginScreen(),
+        '/signup': (context) => const SignupScreen(),
         '/home': (context) => const HomeScreen(),
         '/programs': (context) => const ProgramListingScreen(),
+        '/profile': (context) => const ProfileScreen(),
       },
       onGenerateRoute: (settings) {
         if (settings.name == '/program-details') {

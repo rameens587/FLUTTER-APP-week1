@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/program.dart';
+import '../widgets/program_card.dart';
 
 /// Screen 3 — Program Listing.
 /// Lets learners browse all available programs, with a simple text
@@ -66,8 +67,14 @@ class _ProgramListingScreenState extends State<ProgramListingScreen> {
                 : ListView.builder(
                     padding: const EdgeInsets.all(16),
                     itemCount: filtered.length,
-                    itemBuilder: (context, index) =>
-                        _programCard(context, filtered[index]),
+                    itemBuilder: (context, index) => ProgramCard(
+                      program: filtered[index],
+                      onTap: () => Navigator.pushNamed(
+                        context,
+                        '/program-details',
+                        arguments: filtered[index].id,
+                      ),
+                    ),
                   ),
           ),
         ],
@@ -90,30 +97,4 @@ class _ProgramListingScreenState extends State<ProgramListingScreen> {
     );
   }
 
-  Widget _programCard(BuildContext context, Program program) {
-    return Card(
-      margin: const EdgeInsets.only(bottom: 12),
-      child: ListTile(
-        contentPadding: const EdgeInsets.all(12),
-        title: Text(program.title,
-            style: const TextStyle(fontWeight: FontWeight.w600)),
-        subtitle: Padding(
-          padding: const EdgeInsets.only(top: 6),
-          child: Text(
-            '${program.category} · ${program.location}\n'
-            '${program.seatsAvailable} seats left',
-          ),
-        ),
-        isThreeLine: true,
-        trailing: program.isRegistered
-            ? const Icon(Icons.check_circle, color: Colors.green)
-            : const Icon(Icons.chevron_right),
-        onTap: () => Navigator.pushNamed(
-          context,
-          '/program-details',
-          arguments: program.id,
-        ),
-      ),
-    );
-  }
 }

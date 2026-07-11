@@ -60,8 +60,7 @@ lib/
     program_details_screen.dart    # Screen 4 — Program Details / Feedback
   widgets/                         # (reserved for shared components)
 android/  ios/                     # Platform-specific project folders
-assets/images/                     # App image assets
-pubspec.yaml                       # Dependencies, assets, metadata
+pubspec.yaml                       # Dependencies, metadata
 ```
 
 ## Getting Started

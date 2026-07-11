@@ -11,4 +11,15 @@ void main() {
     expect(find.text('Log In'), findsOneWidget);
     expect(find.byType(TextFormField), findsNWidgets(2));
   });
+
+  testWidgets('Profile screen opens with editable profile details', (
+      WidgetTester tester) async {
+    await tester.pumpWidget(const ExcelerateConnectApp());
+
+    tester.state<NavigatorState>(find.byType(Navigator)).pushNamed('/profile');
+    await tester.pumpAndSettle();
+
+    expect(find.text('Profile'), findsOneWidget);
+    expect(find.text('Edit name'), findsOneWidget);
+  });
 }
