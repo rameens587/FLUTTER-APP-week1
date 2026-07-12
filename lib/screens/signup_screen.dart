@@ -74,7 +74,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 const SizedBox(height: 8),
                 Text(
-                  'Sign up with a valid email to access Excelerate Connect.',
+                  'Sign up with a valid email to access Saurex.',
                   textAlign: TextAlign.center,
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: Colors.black54,

@@ -22,7 +22,7 @@ class ExcelerateConnectApp extends StatelessWidget {
     const seedColor = Color(0xFF2E5EAA);
 
     return MaterialApp(
-      title: 'Excelerate Connect',
+      title: 'Saurex',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: seedColor),

@@ -65,10 +65,18 @@ class _LoginScreenState extends State<LoginScreen> {
                   const FlutterLogo(size: 64),
                   const SizedBox(height: 16),
                   Text(
-                    'Excelerate Connect',
+                    'Saurex',
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.headlineSmall?.copyWith(
                           fontWeight: FontWeight.bold,
+                        ),
+                  ),
+                  const SizedBox(height: 4),
+                  Text(
+                    'Skill. Aspire. Unlock. Rise. Excel. Xplore',
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                          color: Colors.black54,
                         ),
                   ),
                   const SizedBox(height: 4),
