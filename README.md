@@ -1,12 +1,12 @@
-# Excelerate Connect
+# SAUREX
 
 A cross-platform Flutter app that helps **learners** discover and register for
-Excelerate programs/events and gives **admins** a channel to publish
+Saurex programs/events and gives **admins** a channel to publish
 announcements and collect feedback.
 
 ## Project Vision
 
-Excelerate runs many programs, workshops, and events, but learners often miss
+Saurex runs many programs, workshops, and events, but learners often miss
 announcements and admins have no simple way to gauge engagement. Excelerate
 Connect closes that gap with a single mobile app where learners can browse
 programs, register in a tap, and leave feedback afterward — giving admins a
