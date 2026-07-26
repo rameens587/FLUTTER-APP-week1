@@ -6,11 +6,13 @@ import 'screens/home_screen.dart';
 import 'screens/program_listing_screen.dart';
 import 'screens/program_details_screen.dart';
 import 'screens/profile_screen.dart';
+import 'models/program.dart';
 import 'services/auth_repository.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await AuthRepository.initialize();
+  await ProgramRepository.initialize();
   runApp(const ExcelerateConnectApp());
 }
 

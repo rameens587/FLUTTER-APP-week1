@@ -22,4 +22,14 @@ void main() {
     expect(find.text('Profile'), findsOneWidget);
     expect(find.text('Edit name'), findsOneWidget);
   });
+
+  testWidgets('Program listing renders sample data from the mock dataset', (
+      WidgetTester tester) async {
+    await tester.pumpWidget(const ExcelerateConnectApp());
+
+    tester.state<NavigatorState>(find.byType(Navigator)).pushNamed('/programs');
+    await tester.pumpAndSettle();
+
+    expect(find.text('AI Product Launch Workshop'), findsOneWidget);
+  });
 }

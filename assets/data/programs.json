@@ -1,0 +1,74 @@
+[
+  {
+    "id": "p1",
+    "title": "AI Product Launch Workshop",
+    "category": "Workshop",
+    "description": "Learn how to shape, validate, and launch AI-powered products with real product strategy frameworks.",
+    "date": "2026-08-05T10:00:00.000Z",
+    "location": "Innovation Lab — Room 4",
+    "seatsAvailable": 18
+  },
+  {
+    "id": "p2",
+    "title": "Career Readiness Bootcamp",
+    "category": "Bootcamp",
+    "description": "Build confidence through resume reviews, mock interviews, networking practice, and recruiter feedback.",
+    "date": "2026-08-07T09:00:00.000Z",
+    "location": "Excelerate Hub — Room 204",
+    "seatsAvailable": 12
+  },
+  {
+    "id": "p3",
+    "title": "Cloud Computing Foundations",
+    "category": "Bootcamp",
+    "description": "Discover core cloud concepts, deployment patterns, and practical hands-on examples.",
+    "date": "2026-08-12T13:30:00.000Z",
+    "location": "Tech Center — Floor 2",
+    "seatsAvailable": 22
+  },
+  {
+    "id": "p4",
+    "title": "Cybersecurity Essentials Seminar",
+    "category": "Seminar",
+    "description": "A beginner-friendly exploration of digital safety, phishing prevention, and privacy habits.",
+    "date": "2026-08-14T18:00:00.000Z",
+    "location": "Online — Teams",
+    "seatsAvailable": 40
+  },
+  {
+    "id": "p5",
+    "title": "Financial Modeling Masterclass",
+    "category": "Masterclass",
+    "description": "Develop practical spreadsheet skills to build forecasts, models, and investor-ready analysis.",
+    "date": "2026-08-18T15:00:00.000Z",
+    "location": "Finance Lab",
+    "seatsAvailable": 16
+  },
+  {
+    "id": "p6",
+    "title": "Data Science Bootcamp",
+    "category": "Data Science",
+    "description": "Explore analytics, machine learning, data storytelling, and applied problem solving.",
+    "date": "2026-08-20T11:00:00.000Z",
+    "location": "Data Lab — Room 2",
+    "seatsAvailable": 20
+  },
+  {
+    "id": "p7",
+    "title": "Growth Marketing Workshop",
+    "category": "Marketing",
+    "description": "Learn how to design experiments, optimize campaigns, and measure customer growth.",
+    "date": "2026-08-22T10:30:00.000Z",
+    "location": "Marketing Lab",
+    "seatsAvailable": 22
+  },
+  {
+    "id": "p8",
+    "title": "App Security Seminar",
+    "category": "App Development",
+    "description": "Understand secure coding patterns, threat modeling, and app protection best practices.",
+    "date": "2026-08-24T14:00:00.000Z",
+    "location": "Security Lab",
+    "seatsAvailable": 18
+  }
+]
