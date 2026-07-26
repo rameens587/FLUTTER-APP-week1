@@ -74,6 +74,12 @@ Requires Flutter SDK `>=3.3.0`. No backend is wired up yet — `ProgramRepositor
 in `lib/models/program.dart` uses in-memory mock data and is the intended
 integration point for a real API/Firebase backend in a later sprint.
 
+## This Week's Updates
+
+- Program listing and details now load from a sample JSON dataset instead of hardcoded content.
+- Added a validated registration form for joining a program.
+- Added a validated feedback form with clear input checks for empty submissions.
+
 ## Roadmap (beyond Week 1)
 
 - Admin console (create/edit programs, view feedback analytics)

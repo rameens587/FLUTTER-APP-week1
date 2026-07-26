@@ -47,38 +47,67 @@ class Program {
 class ProgramRepository {
   static final List<Program> _programs = <Program>[];
   static bool _initialized = false;
+  static Future<void>? _initializationFuture;
 
-  static Future<void> initialize() async {
-    if (_initialized) return;
+  static Future<void> initialize() {
+    _initializationFuture ??= _loadPrograms();
+    return _initializationFuture!;
+  }
 
+  static Future<void> _loadPrograms() async {
     try {
       final raw = await rootBundle.loadString('assets/data/programs.json');
       final decoded = json.decode(raw) as List<dynamic>;
-      _programs.addAll(
-        decoded.map((item) {
-          final map = item as Map<String, dynamic>;
-          return Program(
-            id: map['id'] as String,
-            title: map['title'] as String,
-            category: map['category'] as String,
-            description: map['description'] as String,
-            date: DateTime.parse(map['date'] as String),
-            location: map['location'] as String,
-            seatsAvailable: map['seatsAvailable'] as int,
-          );
-        }),
-      );
+      _programs
+        ..clear()
+        ..addAll(
+          decoded.map((item) {
+            final map = item as Map<String, dynamic>;
+            return Program(
+              id: map['id'] as String,
+              title: map['title'] as String,
+              category: map['category'] as String,
+              description: map['description'] as String,
+              date: DateTime.parse(map['date'] as String),
+              location: map['location'] as String,
+              seatsAvailable: map['seatsAvailable'] as int,
+            );
+          }),
+        );
     } catch (_) {
-      _programs.addAll(_fallbackPrograms);
+      _programs
+        ..clear()
+        ..addAll(_fallbackPrograms);
     }
 
     _initialized = true;
   }
 
-  static List<Program> getAll() => List.unmodifiable(_programs);
+  static List<Program> getAll() {
+    if (!_initialized) {
+      initialize();
+      return List.unmodifiable(_fallbackPrograms);
+    }
+    return List.unmodifiable(_programs);
+  }
 
-  static Program getById(String id) =>
-      _programs.firstWhere((p) => p.id == id);
+  static Program getById(String id) {
+    if (!_initialized) {
+      initialize();
+      return _fallbackPrograms.firstWhere(
+        (p) => p.id == id,
+        orElse: () => _fallbackPrograms.first,
+      );
+    }
+
+    return _programs.firstWhere(
+      (p) => p.id == id,
+      orElse: () => _fallbackPrograms.firstWhere(
+        (p) => p.id == id,
+        orElse: () => _fallbackPrograms.first,
+      ),
+    );
+  }
 
   static List<Program> getRegisteredPrograms() {
     return _programs
@@ -110,7 +139,7 @@ class ProgramRepository {
 
   static final List<Program> _fallbackPrograms = [
     Program(
-      id: 'fallback-1',
+      id: 'p1',
       title: 'AI Product Launch Workshop',
       category: 'Workshop',
       description: 'Sample fallback program for offline or missing data.',
@@ -119,7 +148,7 @@ class ProgramRepository {
       seatsAvailable: 18,
     ),
     Program(
-      id: 'fallback-2',
+      id: 'p2',
       title: 'Career Readiness Bootcamp',
       category: 'Bootcamp',
       description: 'Sample fallback program for offline or missing data.',

@@ -32,4 +32,21 @@ void main() {
 
     expect(find.text('AI Product Launch Workshop'), findsOneWidget);
   });
+
+  testWidgets('Program details shows a validated registration form', (
+      WidgetTester tester) async {
+    await tester.pumpWidget(const ExcelerateConnectApp());
+
+    tester.state<NavigatorState>(find.byType(Navigator)).pushNamed(
+      '/program-details',
+      arguments: 'p1',
+    );
+    await tester.pumpAndSettle();
+
+    await tester.tap(find.text('Register for this program'));
+    await tester.pump();
+
+    expect(find.text('Please enter your name'), findsOneWidget);
+    expect(find.text('Please enter a valid email'), findsOneWidget);
+  });
 }
